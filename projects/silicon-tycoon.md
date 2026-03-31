@@ -47,9 +47,10 @@ Realistic semiconductor design and manufacturing tycoon game. Browser-based. Pla
 | `js/physics.js` | Performance/power/yield math |
 | `js/gameState.js` | Shared game state, persistence |
 | `js/marketEngine.js` | Silicon cycle, competitor pricing |
-| `js/aiCompetitors.js` | 4 AI rivals with roadmaps |
-| `js/narrativeEvents.js` | 26 historical events (dot-com crash, AI surge, etc.) |
-| `js/rdEngine.js` | 30-tech R&D tree |
+| `js/aiCompetitors.js` | 4 AI rivals — health, dynamic pricing, bankruptcy, market events |
+| `js/narrativeEvents.js` + `js/narrativeNotifier.js` | 27 historical milestones with market impact |
+| `js/newsLog.js` + `js/newsMain.js` | Persistent news feed, 6 categories, unread badge |
+| `js/rdEngine.js` | 30-tech R&D tree — process nodes, architecture unlocks, manufacturing bonuses |
 | `js/financeManager.js` | Loans, investors, IPO, valuation |
 
 ## Themes (4)
@@ -80,22 +81,34 @@ DEV.listAllProducts()   // list all packaged products
 - `.ralphrc` present
 - Run: `cd ~/projects/silicon-tycoon && ~/.local/bin/ralph --live`
 
-## Current state (as of 2026-03-31)
-- v0.22.0 — version strings corrected (was stuck at v0.18.0)
-- "How to Play" modal added to main menu (replaced broken disabled buttons)
-- Full gameplay loop verified working
-- Itch.io zip prepared: `~/projects/silicon-tycoon-itchio.zip`
+## Current state (as of 2026-03-31, post 42-commit pull)
+- v0.22.0 [Unreleased] — CHANGELOG header not yet bumped to Released
+- **~65–70% complete** — has a cohesive full gameplay loop, ready for Early Access launch
+- Itch.io zip may be stale (needs rebuild after 42-commit pull)
 - Itch.io copy written: `ITCHIO_PAGE.md`
-- **Pending**: user to publish on Itch.io at $3.99
+- **Pending**: rebuild Itch.io zip, then user publishes on Itch.io at $3.99
+
+## What was added in the 42-commit pull (Phases 16a–18)
+- **Living AI Competitors**: 4 rivals (Nexatron, Spectra Semi, Vertex Graphics, Memorex) with health system, dynamic pricing, bankruptcy, market events
+- **Narrative Events**: 27 scripted historical milestones (Intel 4004 → ChatGPT → CHIPS Act) with market impact and full-screen modals
+- **News Feed**: `news.html` — persistent filterable log of all game events, unread badge, 6 categories
+- **R&D Tech Tree**: 30 techs across process nodes (3μm→3nm), architecture unlocks (GPU/NPU/IO), manufacturing bonuses; weekly budget system; gates die types and process nodes
+
+## Phase completion
+| Phases | Status |
+|---|---|
+| Die designer, wafer, foundry, binning, packaging, market, finance, IP, company | ✅ Complete |
+| Living AI competitors, narrative events, news feed, R&D | ✅ Complete (new) |
+| Custom component design (Phase 9), ISA/IPC (10), memory chips (11), board-level (12), MCU (14), system integration (16) | ❌ Not started |
 
 ## Known gaps
 - No win condition (open sandbox)
 - No save slots (auto-save to localStorage only)
 - No audio
-- Balance not tuned for all difficulties (BORROWED TIME mode untested)
-- No PassMark benchmark integration (planned)
-- Staffing system deferred
-- Secondary share offerings post-IPO deferred
+- BORROWED TIME difficulty balance untested
+- Competitor R&D, player-choice moments in narrative events — deferred
+- Staffing, secondary share offerings — deferred
+- Exclusive IP licensing negotiation UI — incomplete
 
 ## Gameplay loop
 ```
