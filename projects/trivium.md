@@ -1,24 +1,25 @@
 # Trivium
 
 **GitHub**: https://github.com/sh0tybumbati/trivium
-**State**: 70% complete
-**Stack**: Node.js, WebSocket, SQLite
+**State**: 85–90% complete (updated 2026-03-31 — active development, last commit today)
+**Stack**: React 18, TypeScript, Vite, Tailwind CSS, Node.js, Express, WebSocket (ws), SQLite3, QR codes
+**Deployed**: Render
 
 ## What it is
 Professional networked trivia hosting system. A controller drives gameplay that syncs in real-time to any number of browser-connected devices — projector screens, player phones, tablets. Questions stored in SQLite with import/export.
 
 ## Features built
-- Real-time multi-device WebSocket sync
-- Controller view (host) / display view (projector) separation
-- SQLite question database with import/export
-- Art Deco professional UI
-- Zero-latency sync
+- Real-time multi-device WebSocket sync (zero-latency)
+- Host view / Big Screen (projector) / Player mode — all three implemented
+- Multiple choice + write-in questions with point-based scoring
+- SQLite question database with full CRUD + image support + import/export
+- QR code player join
+- Art Deco professional UI / theme system
+- Deployed to Render
 
 ## Missing (to reach MVP)
-- Player scoring and leaderboard
 - Team modes
-- Admin dashboard
-- Question editor UI
+- Final polish on feud/reveal mechanics (active fixes as of 2026-03-31)
 
 ## Market
 - Bars and restaurants running trivia nights

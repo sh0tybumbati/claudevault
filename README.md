@@ -59,6 +59,10 @@ cat claudevault/projects/*.md     # specific project detail
 | `projects/ralph.md` | Ralph — autonomous Claude Code loop |
 | `projects/anglish-wordhoard.md` | Anglish Word-hoard dictionary app |
 | `projects/space-game.md` | Space Game — Phaser 3 prototype |
-| `projects/trivium.md` | Trivium — trivia hosting system |
-| `projects/okibar.md` | Okibar — karaoke bar management |
+| `projects/trivium.md` | Trivium — trivia hosting system (85–90%, active) |
+| `projects/okibar.md` | Okibar — karaoke bar management (80%+, deployed) |
 | `projects/dubs-mods.md` | Rimworld mods (dubs-heatpump, etc.) |
+| `projects/budget.md` | Budget tracker — full-stack, Docker-ready |
+| `projects/fps-arena.md` | FPS Arena — Godot 4, singleplayer only so far |
+| `projects/arduarm.md` | ArduArm — Raspberry Pi pan/tilt security camera |
+| `projects/voidspace.md` | Voidspace — Reddit alternative, schema only |
