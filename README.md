@@ -63,6 +63,7 @@ cat claudevault/projects/*.md     # specific project detail
 | `projects/trivium.md` | Trivium — trivia hosting system (~90%, deployed) |
 | `projects/okibar.md` | Okibar — karaoke bar management (80%+, deployed) |
 | `projects/dubs-mods.md` | Rimworld mods (dubs-heatpump, etc.) |
+| `projects/bom-tracker.md` | BOM Tracker — hardware bill of materials, Amazon/Lazada/AliExpress |
 | `projects/budget.md` | Budget tracker — full-stack, Docker-ready |
 | `projects/fps-arena.md` | FPS Arena — Godot 4, singleplayer only so far |
 | `projects/arduarm.md` | ArduArm — Raspberry Pi pan/tilt security camera |
