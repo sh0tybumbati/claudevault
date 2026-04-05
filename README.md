@@ -42,7 +42,7 @@ cat claudevault/projects/*.md     # specific project detail
 
 - After any meaningful code change: update CHANGELOG, README, FEATURES.md, PLANNING.md (use `update-docs` skill)
 - Silicon Tycoon live-server: always port 3000, never 8080
-- Don't mention Pro features in YieldDesk until Stripe is wired
+- YieldDesk is not a product — never add monetization, paywalls, or Pro tiers
 
 ---
 
@@ -53,13 +53,14 @@ cat claudevault/projects/*.md     # specific project detail
 | `INCOME.md` | Every income stream, status, what's live |
 | `ENVIRONMENT.md` | Machine setup, tools, accounts, API keys status |
 | `PREFERENCES.md` | How to work with the user, standing behaviors |
+| `RESOURCES.md` | Useful references — APIs, tools, links |
 | `projects/silicon-tycoon.md` | Full Silicon Tycoon project knowledge |
 | `projects/yield-desk.md` | YieldDesk — semiconductor calculator SaaS |
 | `projects/feature-creep.md` | Feature Creep — deck-building game |
 | `projects/ralph.md` | Ralph — autonomous Claude Code loop |
 | `projects/anglish-wordhoard.md` | Anglish Word-hoard dictionary app |
 | `projects/space-game.md` | Space Game — Phaser 3 prototype |
-| `projects/trivium.md` | Trivium — trivia hosting system (85–90%, active) |
+| `projects/trivium.md` | Trivium — trivia hosting system (~90%, deployed) |
 | `projects/okibar.md` | Okibar — karaoke bar management (80%+, deployed) |
 | `projects/dubs-mods.md` | Rimworld mods (dubs-heatpump, etc.) |
 | `projects/budget.md` | Budget tracker — full-stack, Docker-ready |

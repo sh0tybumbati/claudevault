@@ -1,6 +1,6 @@
 # Income Streams
 
-Last updated: 2026-03-31
+Last updated: 2026-04-05
 
 ## Status overview
 
@@ -8,8 +8,8 @@ Last updated: 2026-03-31
 |---|---|---|---|---|
 | Silicon Tycoon | Itch.io | $3.99 | 🟡 Ready — pending publish | Passive |
 | Feature Creep | Itch.io | PWYW $2 | 🟡 Ready — pending publish | Passive |
-| YieldDesk Free | yielddesk-4lo5.onrender.com | Free | 🟢 Live | — |
-| YieldDesk Pro | Same | $9/mo | 🔴 Stripe not connected | $100–$1,800/mo |
+| YieldDesk | GitHub Pages (pending migration) | Free / OSS | 🔵 Not monetized by design | — |
+| Trivium | Self-host / Render (not deployed) | $50–300/mo SaaS | 🟡 ~90% MVP, not deployed | Recurring |
 | STL packs | Cults3D | $2–5 | 🔴 Not started | Passive |
 | Dubs mods Ko-fi | Ko-fi | Tips | 🔴 Not set up | Small passive |
 
@@ -17,48 +17,12 @@ Last updated: 2026-03-31
 
 ## YieldDesk
 
-**Live at**: https://yielddesk-4lo5.onrender.com
+**Not monetized — open infrastructure by design.**
+
 **GitHub**: https://github.com/sh0tybumbati/yielddesk
-**Render service ID**: `srv-d74v20haae7s73bo6rv0`
+**Current live**: https://yielddesk-4lo5.onrender.com (migrating to GitHub Pages)
 
-### What's built
-- Murphy, Poisson, Rectangular, Moore, Seeds, Bose-Einstein yield models
-- 26 process nodes (3μm → 14A Intel) with ITRS D₀ data
-- Process maturity: Pilot (3×) / Ramp (2×) / HVM (1×) / Mature (0.7×)
-- Wafer cost + mask cost + reticle utilization
-- Amortized mask cost per die by wafer volume
-- Yield sensitivity curve (unique — no other tool has this)
-- URL permalink sharing
-- Scribe lines, critical area, edge exclusion
-- Live wafer map canvas
-
-### What's NOT built yet
-- Stripe payment flow (backend code exists in `api/server.js`, needs keys)
-- Pro features hidden (CSV export, Poisson comparison, API access)
-- Node comparison table (same die, multiple nodes side-by-side)
-- Custom domain (using onrender.com for now)
-
-### To go live with Pro
-1. User creates Stripe account
-2. User creates a $9/mo recurring price product in Stripe
-3. Provide to Claude: `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRICE_ID`
-4. Claude sets env vars on Render via API and re-enables Pro UI
-5. Done — payments live
-
-### Differentiation vs SemiAnalysis (main competitor)
-| Feature | SemiAnalysis | YieldDesk |
-|---|---|---|
-| Process node library with D₀ | — | ✓ |
-| Process maturity scaling | — | ✓ |
-| Intel Angstrom nodes | — | ✓ |
-| Wafer + mask cost database | — | ✓ |
-| Mask cost amortization | — | ✓ |
-| Reticle utilization | — | ✓ |
-| Yield sensitivity curve | — | ✓ (unique) |
-| URL sharing | — | ✓ |
-| 7 yield models | ✓ | 6 |
-| Panel support | ✓ | — |
-| Reticle shot map | ✓ | — |
+See `projects/yield-desk.md` for full feature list and roadmap.
 
 ---
 

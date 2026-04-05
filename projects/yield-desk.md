@@ -80,7 +80,22 @@ PORT=3000
 4. Stripe webhook: point to `https://yielddesk-4lo5.onrender.com/api/webhook`
 5. Re-enable Pro UI in index.html and app.js
 
-## What to build next
-- **Node comparison table** — same die, all nodes side-by-side (yield + cost/die)
-- **SEO**: sitemap.xml, robots.txt
-- **Patreon/Ko-fi link** for now until Stripe ready
+## Direction
+
+**YieldDesk is not a product. It's open infrastructure.**
+
+- No Stripe, no Pro tier, no paywalls — ever
+- Kill the backend entirely → pure static site on GitHub Pages
+- Goal: the Wikipedia of semiconductor cost modeling — citable, forkable, community-maintained
+- Open node database as standalone `nodes.json` anyone can PR or use in their own tools
+
+## What to build next (priority order)
+
+1. **Static migration** — remove Express/Stripe backend, deploy to GitHub Pages (`sh0tybumbati.github.io/yielddesk`)
+2. **Node comparison table** — same die across all 26 nodes, sorted by cost/die ("where should I fab this?")
+3. **Chiplet / multi-die system yield** — system yield = ∏(die yields × bonding yield) — no free tool has this
+4. **Monte Carlo uncertainty bands** — D₀ is always a guess; show yield confidence interval instead of false-precision single number
+5. **EUV pass cost modeling** — multi-patterning vs EUV tradeoffs for N5/N3 and below
+6. **Embeddable widget** — `<iframe>` or JS snippet for anyone to embed on their own site
+7. **Open node database** — extract node data to `data/nodes.json`, proper IRDS/ITRS citations, community PRs welcome
+8. **SEO** — sitemap.xml, robots.txt, proper meta tags
