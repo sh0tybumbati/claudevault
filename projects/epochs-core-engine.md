@@ -2,6 +2,7 @@
 
 **Status**: Design / pre-production (no code yet as of 2026-04-19)
 **Engine**: Redot 4.3 (Godot fork)
+**Projection**: **2.5D oblique** (decided 2026-04-19 — see Rendering & Implementation section)
 **Docs in**: `/sdcard/Download/` — `# The Hot Gates - Game Design Document FULL.pdf`, `game_series_lore.docx`
 
 ## What it is
@@ -12,7 +13,7 @@ A four-game series sharing a common engine, dual-arm radial control system, and 
 
 | # | Title | Setting | Aesthetic |
 |---|---|---|---|
-| 1 | **The Hot Gates** | Ancient Sparta, 490–480 BC | 3D cel-shaded Greek pottery (terracotta/black) |
+| 1 | **The Hot Gates** | Ancient Sparta, 490–480 BC | Oblique 2.5D — terracotta/black pottery figures (Apotheon-style) |
 | 2 | **Jade Mountain** | Ancient China, Xiaolin cultivation | Eastern ink scroll paintings |
 | 3 | **Age of Titans** | Primordial prehistory, megafauna | Moebius-inspired cosmic landscapes |
 | 4 | **New Albion** | Technomagical space exploration | Friendly WH40K, cyan/purple heraldic |
@@ -29,6 +30,8 @@ The core innovation across all games. Each arm controlled independently:
 - Mouse/stick circular movement creates natural swinging arcs
 - IK: two-bone skeletal system; shoulder is radial pivot; hand = angle + extension
 - **Grip system**: grip strength depletes with heavy weapons; builds through training
+
+**2.5D implementation**: Characters are Skeleton2D puppets with FABRIK IK chains (shoulder → upper_arm → lower_arm → hand). Mouse angle + extension maps directly to screen-space IK target. World-space hit detection is calculated by projecting the screen-space arm position back through the oblique transform. A ground-plane reticle shows where the weapon tip lands. After brief play this becomes instinct.
 
 ### Ki Metaphysics (shared across all four games)
 Ki exists on a spectrum: pure life energy (positive) ↔ pure death energy (negative).
@@ -50,6 +53,48 @@ Layered anatomy: Equipment → Armor → Clothing → Skin → Muscle → Bone �
   - Hot Gates / Jade Mountain: permanent injury, no replacement
   - Age of Titans: tribal succession absorbs the loss
   - New Albion: sparkcraft prosthetics with runic interfaces (functional replacement + new capabilities)
+
+---
+
+## Rendering & Implementation (2.5D Oblique — decided 2026-04-19)
+
+### Why not 3D
+The GDD originally specified "3D cel-shaded Greek pottery aesthetic" but all four art references (Greek pottery, Eastern ink scrolls, Moebius linework, heraldic imagery) are flat 2D traditions. 3D cel-shading approximates what 2D illustration does better and adds enormous production overhead for a solo dev. Apotheon — cited in the GDD itself — proves 2D pottery art is the strongest version of this aesthetic.
+
+### Projection: oblique (not isometric)
+Camera sits at ~60° overhead, tilted slightly toward the player. Characters are taller than wide, slightly flattened. Oblique (vs isometric) is chosen because:
+- Shield wall faces the player — formations read clearly
+- "Forward" arm extension reads naturally toward the enemy (up-slightly-forward on screen)
+- Phalanx depth (ranks behind ranks) is visible
+
+### Zoom levels (same 4 as GDD, implemented differently)
+| Level | View | Character representation | Dual-arm |
+|---|---|---|---|
+| 1 — Personal | Default close | Full Skeleton2D puppet, IK live | Fully active |
+| 2 — Squad | ~4× zoom out | Simplified sprite, no IK | Locked to stance |
+| 3 — Army | Formation scale | Colored formation blocks + facing arrow | Off |
+| 4 — Grand strategy | Full top-down 2D | Buildings/tiles only | Off |
+
+Transitions are `Camera2D.zoom` lerps with visibility layer toggles at thresholds. The oblique world folds flat at level 4 — estate builder and campaign map are pure 2D.
+
+### Skeleton2D puppet system
+- Each character: illustrated limb segments (upper arm, lower arm, hand + weapon) rigged in Skeleton2D
+- IK: `SkeletonModification2DFABRIK` drives each arm chain to a target point
+- Input → IK target: mouse screen position relative to character → arm target in screen space → projected to world space for combat math
+- Ground-plane reticle shows weapon tip landing position
+- Art is baked into the illustrations — palette shader (flat fill + outline) achieves the pottery/scroll/heraldic look per game without lighting complexity
+
+### Art pipeline per game (shared rig, distinct visual language)
+| Game | Style | Background | Character treatment |
+|---|---|---|---|
+| Hot Gates | Greek pottery | Terracotta ground, black figure scenes | Bold black outline, flat fill, geometric border UI |
+| Jade Mountain | Ink wash | Parallax painted panels, misty layered planes | Brush-stroke puppet figures |
+| Age of Titans | Moebius cosmic | Vast flat-colour landscapes, tiny humans | Bold ink outline, thick flat fills; megafauna = giant multi-segment puppets |
+| New Albion | Heraldic sci-fi | Schematic / blueprint backgrounds | Animated coat-of-arms figures; wardplate = heraldic knight puppet |
+
+### Why 2.5D is more achievable
+3D requires: modelling, rigging, skinning, animation, cel-shader pipeline, LOD meshes, lighting passes.
+Skeleton2D requires: illustrated limb segments (one day per character for a competent artist), IK setup (one afternoon in Godot), palette shader (~20 lines GLSL), TileMap for world. The art style is baked in — you can't accidentally light it wrong.
 
 ---
 
